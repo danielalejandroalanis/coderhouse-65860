@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import ButtonComponent from "./components/ButtonComponent/ButtonComponent";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  //Fragment --> Creado por react, se puede escribir <> </> o <React.Fragment> </React.Fragment>
+  //Estados: valor que el componente tiene en el momento de ejecucion y el cuál puede mutar (que el valor del estado puede mutar). Para crear un estado en React se usa una funcion especifica que se llama useState (mejor conocida como hook useState)
+  //Los estados siempre deben tener un valor inicial, ej: React.useState(0)
+
+  const [state, setState] = React.useState(0);
+
+  const plusOne = () => {
+    setState(state + 1);
+  };
+
+  const minusOne = () => {
+    setState(state - 1);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ButtonComponent
+        label="-"
+        description="+1 al estado"
+        myFunction={minusOne}
+      />
+      <span>{state}</span>
+      <ButtonComponent
+        label="+"
+        description="-1 al estado"
+        myFunction={plusOne}
+      />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
