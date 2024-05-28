@@ -6,35 +6,6 @@ import ItemListContainerComponent from "./components/ItemListContainerComponent/
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  //Promesas
-  const myPromise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const isTrue = false;
-      if (isTrue) {
-        resolve([
-          {
-            id: "dasdasd",
-            name: "Mi producto",
-            description: "Mi nuevo producto super buena onda hiper caro",
-            stock: 10
-          },
-        ]);
-      } else {
-        reject(Error("Todo fallo"));
-      }
-    }, 3000);
-  });
-
-  myPromise
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      console.log("termine mi ejecución");
-    });
 
   return (
     <>

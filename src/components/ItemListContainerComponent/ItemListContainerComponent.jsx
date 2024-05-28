@@ -1,66 +1,53 @@
 import React from "react";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
-import { getAllProducts } from "../../services/products.service";
+import { getAllProducts, deleteProductById, createProduct } from "../../services/productsServices";
 
 import "./ItemListContainerComponent.css";
 
-const ItemListContainerComponent = ({ greeting }) => {
+const ItemListContainerComponent = () => {
   const [products, setProducts] = React.useState([]);
-
-  // const myNums = [1, 2, 3, 4, 5, 6, 7];
-
-  // const myNumsAfterMap = myNums.map((num) => {
-  //   return num + 2;
-  // });
-
-  // console.log(myNumsAfterMap);
-
-  // const myProducts = [
-  //   {
-  //     id: "dca9s8da98asd9asd9a8dad98ad8",
-  //     name: "Zapatilla Nike Jordan 9.5",
-  //     description: "Zapatilla Nike Jordan Unisex - Adultos",
-  //     price: 200,
-  //     stock: 10,
-  //     category: "Urbans",
-  //   },
-  //   {
-  //     id: "dasd90asd9a87da0sd98as09da0s8d",
-  //     name: "Zapatilla Nike Air Force 9.5",
-  //     description: "Zapatilla Nike Air Force Unisex - Adultos",
-  //     price: 120,
-  //     stock: 7,
-  //     category: "Urbans",
-  //   },
-  // ];
-
   React.useEffect(() => {
     getAllProducts()
-      .then((res) => {
-        setProducts(res.data.products);
-      })
+      .then((res) => setProducts(res.data.products))
       .catch((err) => console.error(err));
   }, []);
 
+  const deleteProduct = (id) => {
+    deleteProductById(id)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+  };
+
+  const createNewProduct = () => {
+    const newProduct = {
+      title: "Nuevo Producto",
+    }
+    createProduct(newProduct)
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
+  }
+
   return (
     <div className="itemListContainer">
-      {/* {myProducts.map((product, index) => {
+      {products.map((product) => {
         return (
-          // <div key={index}>
-          <div key={product.id}>
-            <li>{product.name}</li>
-            <li>{product.description}</li>
-            <li>{product.price}</li>
-            <li>{product.stock}</li>
-            <li>{product.category}</li>
-          </div>
-        );
-      })} */}
-      {products.map((product, index) => {
-        return (
-          <div key={product.id}>
-            <li>Title: {product.title}</li>
-          </div>
+          <Card key={product.id} style={{ width: "18rem" }}>
+            <Card.Img variant="top" src={product.thumbnail} />
+            <Card.Body>
+              <Card.Title>{product.title}</Card.Title>
+              <Card.Text>{product.description}</Card.Text>
+              {product.id === 1 ? (
+                // <Button variant="danger" onClick={() => deleteProduct(product.id)}>
+                <Button variant="success" onClick={() => createNewProduct()}>
+                  Crear Producto
+                </Button>
+              ) : (
+                <Button variant="primary">Ir al detalle</Button>
+              )}
+            </Card.Body>
+          </Card>
         );
       })}
     </div>
