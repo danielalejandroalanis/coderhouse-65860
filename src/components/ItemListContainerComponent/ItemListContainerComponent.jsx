@@ -2,9 +2,14 @@ import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import { getAllProducts, deleteProductById, createProduct } from "../../services/productsServices";
+import {
+  getAllProducts,
+  deleteProductById,
+  createProduct,
+} from "../../services/productsServices";
 
 import "./ItemListContainerComponent.css";
+import { Link } from "react-router-dom";
 
 const ItemListContainerComponent = () => {
   const [products, setProducts] = React.useState([]);
@@ -23,11 +28,11 @@ const ItemListContainerComponent = () => {
   const createNewProduct = () => {
     const newProduct = {
       title: "Nuevo Producto",
-    }
+    };
     createProduct(newProduct)
       .then((res) => console.log(res))
       .catch((err) => console.error(err));
-  }
+  };
 
   return (
     <div className="itemListContainer">
@@ -38,14 +43,7 @@ const ItemListContainerComponent = () => {
             <Card.Body>
               <Card.Title>{product.title}</Card.Title>
               <Card.Text>{product.description}</Card.Text>
-              {product.id === 1 ? (
-                // <Button variant="danger" onClick={() => deleteProduct(product.id)}>
-                <Button variant="success" onClick={() => createNewProduct()}>
-                  Crear Producto
-                </Button>
-              ) : (
-                <Button variant="primary">Ir al detalle</Button>
-              )}
+              <Link to={`/item/${product.id}`}>Ir al detalle</Link>
             </Card.Body>
           </Card>
         );

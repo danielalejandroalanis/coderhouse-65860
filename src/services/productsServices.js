@@ -19,3 +19,11 @@ export const createProduct = (product) => {
     }
   );
 };
+
+export const getProductById = (id) => {
+  return axios.get(`https://dummyjson.com/products/${id}`)
+};
+
+export const getAllCategories = () => {
+  return axios.get('https://dummyjson.com/products/category-list')
+}
