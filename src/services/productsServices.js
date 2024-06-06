@@ -27,3 +27,14 @@ export const getProductById = (id) => {
 export const getAllCategories = () => {
   return axios.get('https://dummyjson.com/products/category-list')
 }
+
+export const getProductsTwo = async () => {
+  return new Promise((resolve, reject) => {
+    try{
+      
+      resolve
+    }catch(err){
+
+    }
+  })
+}

@@ -13,6 +13,17 @@ import CartWidgetComponent from "../CartWidgetComponent/CartWidgetComponent";
 const NavBarComponent = () => {
   const [categories, setCategories] = React.useState([]);
 
+  const myCategorie = [
+    {
+      name: "Zapatillas hombre",
+      category: "mens-shoes",
+    },
+    {
+      name: "Zapatillas mujer",
+      category: "womens-shoes",
+    },
+    
+  ];
   React.useEffect(() => {
     getAllCategories()
       .then((res) => {
@@ -37,10 +48,10 @@ const NavBarComponent = () => {
             <Link to="/">Inicio</Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              {categories.map((category, index) => {
+              {myCategorie.map((category, index) => {
                 return (
                   <NavDropdown.Item key={index}>
-                    <Link to={`/category/${category}`}>{category}</Link>
+                    <Link to={`/category/${category.category}`}>{category.name}</Link>
                   </NavDropdown.Item>
                 );
               })}
