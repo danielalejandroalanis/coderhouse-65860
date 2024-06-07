@@ -9,6 +9,7 @@ const CartWidgetComponent = () => {
     fontSize: "1.3rem",
     marginRight: "0.5rem",
   };
+
   return (
     <div>
       <FontAwesomeIcon icon={faCartPlus} style={customStyles} />
