@@ -18,7 +18,7 @@ const NavBarComponent = () => {
       .catch((error) => {
         console.error(error);
       });
-  });
+  }, []);
   return (
     <Navbar
       expand="lg"
